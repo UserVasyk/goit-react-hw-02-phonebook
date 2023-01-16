@@ -36,21 +36,34 @@ export class App extends Component {
       contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
+  checkingName = () => {
+    return this.state.contacts.map(({ name }) => name.toLowerCase());
+  };
+  deleteContact = id => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== id),
+    }));
+  };
   render() {
-    const { getVisibleContacts, changeFilter, addContact } = this;
+    const {
+      getVisibleContacts,
+      changeFilter,
+      addContact,
+      checkingName,
+      deleteContact,
+    } = this;
     const { filter } = this.state;
     return (
-      <>
+      <div>
         <h1>Phonebook</h1>
-        <ContactForm
-          // renderContact={renderContact}
-          // handleChange={handleChange}
-          onSubmit={addContact}
-        />
+        <ContactForm checkingName={checkingName} onSubmit={addContact} />
         <h2>Contacts</h2>
         <Filter changeFilter={changeFilter} filter={filter} />
-        <ContactList contacts={getVisibleContacts()} />
-      </>
+        <ContactList
+          deleteContact={deleteContact}
+          contacts={getVisibleContacts()}
+        />
+      </div>
     );
   }
 }
