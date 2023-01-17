@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import { Field } from 'formik';
-export const FindingContact = styled(Field)`
+
+export const FindingContact = styled.input`
   font-size: 15px;
   padding: 5px 10px;
 `;

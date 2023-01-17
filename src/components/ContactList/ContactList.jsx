@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import { ListItem, List } from './ContactList.styled';
 export class ContactList extends Component {
   render() {
@@ -9,7 +10,7 @@ export class ContactList extends Component {
           <ListItem key={id}>
             {name}: {number}
             <button onClick={() => deleteContact(id)} type="button">
-              DELETE
+              Delete
             </button>
           </ListItem>
         ))}
@@ -17,3 +18,7 @@ export class ContactList extends Component {
     );
   }
 }
+ContactList.propeTypes = {
+  contacts: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  deleteContact: PropTypes.func.isRequired,
+};

@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
-import { Field, Form } from 'formik';
-export const FieldInput = styled(Field)`
+
+export const FieldInput = styled.input`
   font-size: 15px;
   padding: 5px 10px;
 `;
-export const FormBox = styled(Form)`
+export const FormBox = styled.form`
   display: flex;
   flex-direction: column;
   gap: 20px;
