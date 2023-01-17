@@ -1,18 +1,19 @@
 import { Component } from 'react';
+import { ListItem, List } from './ContactList.styled';
 export class ContactList extends Component {
   render() {
     const { contacts, deleteContact } = this.props;
     return (
-      <ul>
+      <List>
         {contacts.map(({ id, name, number }) => (
-          <li key={id}>
+          <ListItem key={id}>
             {name}: {number}
             <button onClick={() => deleteContact(id)} type="button">
               DELETE
             </button>
-          </li>
+          </ListItem>
         ))}
-      </ul>
+      </List>
     );
   }
 }

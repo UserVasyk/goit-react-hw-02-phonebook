@@ -1,6 +1,10 @@
+import { FindingContact, Label } from './Filter.styled';
+import { Formik } from 'formik';
 export const Filter = ({ changeFilter, filter }) => (
-  <label>
-    Find Contacts by name
-    <input type="text" value={filter} onChange={changeFilter} />
-  </label>
+  <Formik>
+    <Label>
+      Find Contacts by name
+      <FindingContact type="text" value={filter} onChange={changeFilter} />
+    </Label>
+  </Formik>
 );

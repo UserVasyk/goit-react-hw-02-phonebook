@@ -1,5 +1,6 @@
 import { Component } from 'react';
-import { Field, Form, Formik } from 'formik';
+import { Formik } from 'formik';
+import { FieldInput, FormBox, ButtonSubmit, Label } from './ContactForm.styled';
 export class ContactForm extends Component {
   state = {
     name: '',
@@ -30,10 +31,10 @@ export class ContactForm extends Component {
     const { name, number } = this.state;
     return (
       <Formik>
-        <Form onSubmit={renderContact}>
-          <label>
+        <FormBox onSubmit={renderContact}>
+          <Label>
             Name
-            <Field
+            <FieldInput
               type="text"
               name="name"
               value={name}
@@ -42,10 +43,10 @@ export class ContactForm extends Component {
               required
               onChange={handleChange}
             />
-          </label>
-          <label>
+          </Label>
+          <Label>
             Number
-            <Field
+            <FieldInput
               type="tel"
               name="number"
               value={number}
@@ -54,9 +55,9 @@ export class ContactForm extends Component {
               required
               onChange={handleChange}
             />
-          </label>
-          <button type="submit">Add contact</button>
-        </Form>
+          </Label>
+          <ButtonSubmit type="submit">Add contact</ButtonSubmit>
+        </FormBox>
       </Formik>
     );
   }
