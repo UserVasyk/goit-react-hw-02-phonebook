@@ -10,11 +10,6 @@ export class ContactForm extends Component {
   renderContact = evt => {
     evt.preventDefault();
     const { name, number } = this.state;
-
-    const massiveNames = this.props.checkingName();
-    if (massiveNames.includes(name.toLowerCase())) {
-      return alert(`${name} is already in contacts`);
-    }
     this.setState({
       name: '',
       number: '',
@@ -62,5 +57,5 @@ export class ContactForm extends Component {
   }
 }
 ContactForm.propTypes = {
-  checkingName: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };

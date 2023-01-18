@@ -21,9 +21,14 @@ export class App extends Component {
       name,
       number,
     };
-    this.setState(({ contacts }) => ({
-      contacts: [...contacts, contact],
-    }));
+    const isExist = this.state.contacts.find(contact => contact.name === name);
+    if (isExist !== undefined) {
+      return alert(`${name} is already in contacts`);
+    } else {
+      this.setState(({ contacts }) => ({
+        contacts: [...contacts, contact],
+      }));
+    }
   };
   changeFilter = evt => {
     this.setState({ filter: evt.currentTarget.value });
@@ -37,27 +42,19 @@ export class App extends Component {
       contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
-  checkingName = () => {
-    return this.state.contacts.map(({ name }) => name.toLowerCase());
-  };
   deleteContact = id => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== id),
     }));
   };
   render() {
-    const {
-      getVisibleContacts,
-      changeFilter,
-      addContact,
-      checkingName,
-      deleteContact,
-    } = this;
+    const { getVisibleContacts, changeFilter, addContact, deleteContact } =
+      this;
     const { filter } = this.state;
     return (
       <Box>
         <Title>Phonebook</Title>
-        <ContactForm checkingName={checkingName} onSubmit={addContact} />
+        <ContactForm onSubmit={addContact} />
         <TitleContacts>Contacts</TitleContacts>
         <Filter changeFilter={changeFilter} filter={filter} />
         <ContactList
